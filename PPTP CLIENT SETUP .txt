@@ -12,3 +12,20 @@ PPTP CLIENT SETUP
 
 "ip"  >>  stands for address of VPN server
 192.168.88.2-192.168.88.254  >>  describes the range of IP addresses, which means IP addresses from which it routes traffic through VPN.
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+SERVER SETUP
+
+
+/ip pool add name=vpn-pool ranges=10.11.12.10-10.11.12.20
+/ppp profile add name=VPN-profile local-address=vpn-pool remote-address=vpn-pool
+/ppp secret  add name=profile password=profile profile=VPN-profile
+/ip firewall filter add chain=input protocol=6 dst-port=1723
+/ip firewall filter add chain=input protocol=gre
+/interface pptp-server server set authentication=pap,chap,mschap1,mschap2 enabled=yes
+
+
+
+10.11.12.10-10.11.12.20   >> stands for VPN ip range. you can use what range you whant or just one ip address.
+name=profile password=profile >> stands for log and passwd of VPN , also it can be anything. 
