@@ -1,0 +1,15 @@
+
+
+PPTP CLIENT SETUP   
+
+
+/interface pptp-client add name=VPN-"ip" user=profile password=profile connect-to="ip" disabled=no
+/ip firewall nat add chain=srcnat out-interface=VPN-"ip" action=masquerade 
+/ip firewall mangle add chain=prerouting src-address=192.168.88.2-192.168.88.254 action=mark-routing new-routing-mark=route-"ip"
+/ip route add gateway=VPN-"ip" routing-mark=route-"ip"
+
+
+
+"ip"  >>  stands for address of VPN server
+192.168.88.2-192.168.88.254  >>  stands for source ip address range, that mean from what ip addresses the thraffic iss routed though VPN. 
+				 it is important to leave out of the range the gateway of LAN
