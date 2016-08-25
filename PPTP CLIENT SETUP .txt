@@ -11,5 +11,4 @@ PPTP CLIENT SETUP
 
 
 "ip"  >>  stands for address of VPN server
-192.168.88.2-192.168.88.254  >>  stands for source ip address range, that mean from what ip addresses the thraffic iss routed though VPN. 
-				 it is important to leave out of the range the gateway of LAN
+192.168.88.2-192.168.88.254  >>  describes the range of IP addresses, which means IP addresses from which it routes traffic through VPN.
